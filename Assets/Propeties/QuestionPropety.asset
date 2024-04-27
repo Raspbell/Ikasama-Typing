@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: QuestionPropety
   m_EditorClassIdentifier: 
   questions:
-  - title: "\u304D\u3085\u3046\u308A"
-    roman: kyuuri
-  - title: "\u306A\u3059"
-    roman: nasu
-  - title: "\u306B\u3093\u3058\u3093"
-    roman: ninnzinn
-  - title: "\u30B7\u30F3\u304F\u3093"
-    roman: sinnkunn
+  - title: "\u304B\u3089\u3042\u3052"
+    roman: karaage
+  - title: "\u30CF\u30F3\u30D0\u30FC\u30B0"
+    roman: hannba-gu
+  - title: "\u3068\u3093\u304B\u3064"
+    roman: tonnkatu
