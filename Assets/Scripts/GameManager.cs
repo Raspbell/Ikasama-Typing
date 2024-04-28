@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +14,7 @@ public class GameManager : MonoBehaviour {
 
     public int money;
     public int totalMoney;
-    public int workersNum;
+    public ReactiveProperty<int> workersNum = new ReactiveProperty<int>();
     public int rewardPerChar;
     public float typingCycle;
     public float missTypeProbability;
@@ -32,6 +33,15 @@ public class GameManager : MonoBehaviour {
             growthRates[type] = 1.1f; // Set a default growth rate for each type
             baseCosts[type] = 10; // Set a default base cost for each type
         }
+        workersNum.Subscribe(x =>
+        {
+            int xSqrt = Mathf.RoundToInt(Mathf.Sqrt(x));
+            if (x == xSqrt * xSqrt)
+            {
+                gridItemSizeSetter.rowCount = xSqrt + 1;
+                gridItemSizeSetter.columnCount = xSqrt + 1;
+            }
+        });
     }
 
     private void Update() {
@@ -70,7 +80,8 @@ public class GameManager : MonoBehaviour {
     }
 
     public int GetLevelCost(EnhanceButton.Type type, int level) {
-        return (int)(baseCosts[type] * Mathf.Pow(growthRates[type], level));
+        //return (int)(baseCosts[type] * Mathf.Pow(growthRates[type], level));
+        return 0;
     }
 
     public float GetLevelValue(EnhanceButton.Type type, int level) {
@@ -96,7 +107,7 @@ public class GameManager : MonoBehaviour {
         int currentLevel = levels[type];
         switch (type) {
             case EnhanceButton.Type.WorkersNum:
-                workersNum = (int)GetLevelValue(type, currentLevel);
+                workersNum.Value = (int)GetLevelValue(type, currentLevel);
                 var obj = Instantiate(worker);
                 obj.transform.parent = workerPanel.transform;
                 obj.transform.localScale = Vector3.one;

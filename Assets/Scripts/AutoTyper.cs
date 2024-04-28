@@ -17,8 +17,6 @@ public class AutoTyper : MonoBehaviour
     private List<char> roman = new List<char>();
     private GameManager gameManager;
     private int romanIndex = 0;
-    private Tween shakeTween;
-    private Vector3 defaultPos;
 
     private int workersNum;
     private int rewardPerChar;
@@ -31,12 +29,6 @@ public class AutoTyper : MonoBehaviour
         time = 0;
         gameManager = FindObjectOfType<GameManager>();
         InitializeQuestion();
-        StartCoroutine(WaitOneFrame());
-    }
-
-    IEnumerator WaitOneFrame() {
-        yield return null;
-        defaultPos = transform.localPosition;
     }
 
     private void Update()
@@ -59,27 +51,22 @@ public class AutoTyper : MonoBehaviour
                 }
             }
             else {
-                MissTypeAnimation();
                 time -= missTypePenalty;
+                MissTypeAnimation();
             }
         }
     }
 
-    private void MissTypeAnimation() {
-        shakeTween.Kill();
-        transform.localPosition = defaultPos;
-        shakeTween = transform.DOShakePosition(0.1f, 5f, 30, 1, false, true);
-    }
-
     private void UpdateStatus() {
-        if(workersNum != gameManager.workersNum) {
-            workersNum = gameManager.workersNum;
-            StartCoroutine(WaitOneFrame());
-        }
+        workersNum = gameManager.workersNum.Value;
         rewardPerChar = gameManager.rewardPerChar;
         typingCycle = gameManager.typingCycle;
         missTypeProbability = gameManager.missTypeProbability;
         missTypePenalty = gameManager.missTypePenalty;
+    }
+    private void MissTypeAnimation()
+    {
+        transform.DOShakePosition(0.1f, 5f, 30, 1, false, true);
     }
 
     private string GenerateRomanText()

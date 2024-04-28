@@ -4,10 +4,8 @@ using UniRx;
 
 public class GridItemSizeSetter : MonoBehaviour {
 
-    [SerializeField]
-    private int rowCount = 3;
-    [SerializeField]
-    private int columnCount = 3;
+    public int rowCount = 1;
+    public int columnCount = 1;
 
     public float CellHeight {
         get {
@@ -35,6 +33,7 @@ public class GridItemSizeSetter : MonoBehaviour {
         gameObject.ObserveEveryValueChanged(_ => gridLayout.padding.right).Subscribe(_ => UpdateCellSize());
         gameObject.ObserveEveryValueChanged(_ => gridLayout.padding.top).Subscribe(_ => UpdateCellSize());
         gameObject.ObserveEveryValueChanged(_ => gridLayout.padding.bottom).Subscribe(_ => UpdateCellSize());
+        gameObject.ObserveEveryValueChanged(_ => rowCount).Subscribe(_ => UpdateCellSize());
     }
 
     private void UpdateCellSize() {
