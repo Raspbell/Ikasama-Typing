@@ -699,7 +699,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 36827547}
   m_Father: {fileID: 1157353105}
@@ -6822,7 +6822,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1554393199}
   - component: {fileID: 1554393198}
-  - component: {fileID: 1554393197}
   - component: {fileID: 1554393196}
   m_Layer: 0
   m_Name: Camera
@@ -6875,14 +6874,6 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!81 &1554393197
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1554393195}
-  m_Enabled: 1
 --- !u!20 &1554393198
 Camera:
   m_ObjectHideFlags: 0
@@ -7165,7 +7156,8 @@ MonoBehaviour:
   gridItemSizeSetter: {fileID: 465945814}
   money: 0
   totalMoney: 0
-  workersNum: 0
+  workersNum:
+    value: 0
   rewardPerChar: 1
   typingCycle: 1
   missTypeProbability: 0.5
