@@ -35,29 +35,34 @@ public class AutoTyper : MonoBehaviour
     {
         UpdateStatus();
         time += Time.deltaTime;
-        if(time > typingCycle)
+        if (time > typingCycle)
         {
             time = 0;
-            if(missTypeProbability < Random.Range(0f, 1f)) {
+            if (missTypeProbability < Random.Range(0f, 1f))
+            {
                 romanIndex++;
-                if (roman[romanIndex] == '@') {
+                if (roman[romanIndex] == '@')
+                {
                     int reward = rewardPerChar * question.title.Length;
                     gameManager.money += reward;
                     gameManager.totalMoney += reward;
                     InitializeQuestion();
                 }
-                else {
+                else
+                {
                     romanText.text = GenerateRomanText();
                 }
             }
-            else {
+            else
+            {
                 time -= missTypePenalty;
                 MissTypeAnimation();
             }
         }
     }
 
-    private void UpdateStatus() {
+    private void UpdateStatus()
+    {
         workersNum = gameManager.workersNum.Value;
         rewardPerChar = gameManager.rewardPerChar;
         typingCycle = gameManager.typingCycle;

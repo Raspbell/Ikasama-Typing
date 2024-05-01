@@ -4,13 +4,22 @@ using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
 
     [SerializeField] GameObject worker;
     [SerializeField] GameObject workerPanel;
+    [SerializeField] GameObject workersNumButton;
+    [SerializeField] GameObject rewardPerCharButton;
+    [SerializeField] GameObject typingCycleButton;
+    [SerializeField] GameObject missTypeProbabilityButton;
+    [SerializeField] GameObject missTypePenaltyButton;
+    [SerializeField] GameObject ikasamaButton;
     [SerializeField] TextMeshProUGUI moneyText;
     [SerializeField] GridItemSizeSetter gridItemSizeSetter;
+    [SerializeField] float targetPositionX;
 
     public int money;
     public int totalMoney;
@@ -21,47 +30,75 @@ public class GameManager : MonoBehaviour {
     public float missTypePenalty;
     public float ikasamaProbability;
 
-    private Dictionary<EnhanceButton.Type, int> levels = new Dictionary<EnhanceButton.Type, int>();
-    private Dictionary<EnhanceButton.Type, float> growthRates = new Dictionary<EnhanceButton.Type, float>();
-    private Dictionary<EnhanceButton.Type, int> baseCosts = new Dictionary<EnhanceButton.Type, int>();
+    public Dictionary<EnhanceButton.Type, int> levels = new Dictionary<EnhanceButton.Type, int>();
+    public Dictionary<EnhanceButton.Type, float> growthRates = new Dictionary<EnhanceButton.Type, float>();
+    public Dictionary<EnhanceButton.Type, int> baseCosts = new Dictionary<EnhanceButton.Type, int>();
 
-    
-
-    void Start() {
-        foreach (EnhanceButton.Type type in System.Enum.GetValues(typeof(EnhanceButton.Type))) {
-            levels[type] = 1; // Initialize levels
-            growthRates[type] = 1.1f; // Set a default growth rate for each type
-            baseCosts[type] = 10; // Set a default base cost for each type
-        }
-        workersNum.Subscribe(x =>
+    void Start()
+    {
+        foreach (EnhanceButton.Type type in System.Enum.GetValues(typeof(EnhanceButton.Type)))
         {
-            int xSqrt = Mathf.RoundToInt(Mathf.Sqrt(x));
-            if (x == xSqrt * xSqrt)
+            levels[type] = 1;
+            growthRates[type] = 1.1f;
+            baseCosts[type] = 10;
+        }
+        workersNum.Subscribe(num =>
+        {
+            int xSqrt = Mathf.RoundToInt(Mathf.Sqrt(num));
+            if (num == xSqrt * xSqrt)
             {
                 gridItemSizeSetter.rowCount = xSqrt + 1;
                 gridItemSizeSetter.columnCount = xSqrt + 1;
             }
         });
+        workersNum.Subscribe(num =>
+        {
+            if (num >= 2)
+            {
+                rewardPerCharButton.SetActive(true);
+                typingCycleButton.SetActive(true);
+                rewardPerCharButton.transform.DOLocalMoveX(targetPositionX, 1f);
+                typingCycleButton.transform.DOLocalMoveX(targetPositionX, 1f);
+            }
+            if (num >= 4)
+            {
+                missTypeProbabilityButton.SetActive(true);
+                missTypeProbabilityButton.transform.DOLocalMoveX(targetPositionX, 1f);
+            }
+            if (num >= 6)
+            {
+                missTypePenaltyButton.SetActive(true);
+                missTypePenaltyButton.transform.DOLocalMoveX(targetPositionX, 1f);
+            }
+            if (num >= 8)
+            {
+                ikasamaButton.SetActive(true);
+                ikasamaButton.transform.DOLocalMoveX(targetPositionX, 1f);
+            }
+        });
     }
 
-    private void Update() {
+    private void Update()
+    {
         moneyText.text = money.ToString();
     }
 
-    public void OnButtonClicked(EnhanceButton.Type type, TextMeshProUGUI text) {
+    public void OnButtonClicked(EnhanceButton.Type type, TextMeshProUGUI text)
+    {
         int currentLevel = levels[type];
         int currentCost = GetLevelCost(type, currentLevel);
-        float nextValue = GetLevelValue(type, currentLevel + 1);
-        float next2Value = GetLevelValue(type, currentLevel + 2);
-        if (money >= currentCost) {
+        if (money >= currentCost)
+        {
             money -= currentCost;
             levels[type]++;
             UpdateStats(type);
-            UpdateDisplay(type, text, nextValue, next2Value);
         }
     }
-    public string GetTypeName(EnhanceButton.Type type) {
-        switch (type) {
+
+    public string GetTypeName(EnhanceButton.Type type)
+    {
+        switch (type)
+        {
             case EnhanceButton.Type.WorkersNum:
                 return "人員追加";
             case EnhanceButton.Type.RewardPerChar:
@@ -79,13 +116,18 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    public int GetLevelCost(EnhanceButton.Type type, int level) {
-        //return (int)(baseCosts[type] * Mathf.Pow(growthRates[type], level));
-        return 0;
+
+    public int GetLevelCost(EnhanceButton.Type type, int level)
+    {
+        int baseCost = baseCosts[type];
+        return Mathf.RoundToInt(baseCost * Mathf.Pow(1.5f, level - 1));
     }
 
-    public float GetLevelValue(EnhanceButton.Type type, int level) {
-        switch (type) {
+
+    public float GetLevelValue(EnhanceButton.Type type, int level)
+    {
+        switch (type)
+        {
             case EnhanceButton.Type.WorkersNum:
                 return level - 1;
             case EnhanceButton.Type.RewardPerChar:
@@ -103,9 +145,11 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private void UpdateStats(EnhanceButton.Type type) {
+    private void UpdateStats(EnhanceButton.Type type)
+    {
         int currentLevel = levels[type];
-        switch (type) {
+        switch (type)
+        {
             case EnhanceButton.Type.WorkersNum:
                 workersNum.Value = (int)GetLevelValue(type, currentLevel);
                 var obj = Instantiate(worker);
@@ -128,9 +172,5 @@ public class GameManager : MonoBehaviour {
                 ikasamaProbability = GetLevelValue(type, currentLevel);
                 break;
         }
-    }
-
-    private void UpdateDisplay(EnhanceButton.Type type, TextMeshProUGUI text, float nextValue, float next2Value) {
-        text.text = $"{GetTypeName(type)}\n{nextValue} → {next2Value}";
     }
 }

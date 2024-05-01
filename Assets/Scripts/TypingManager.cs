@@ -24,27 +24,27 @@ public class TypingManager : MonoBehaviour
     private bool isMac;
     private Tween shakeTween;
     private Vector3 defaultPos;
+    private Dictionary<char, Vector2> keyPositions;
 
     private void Start()
     {
         gameManager = GetComponent<GameManager>();
         InitializeQuestion();
-        if (SystemInfo.operatingSystem.Contains("Windows")) {
+        InitializeKeyPosition();
+        if (SystemInfo.operatingSystem.Contains("Windows"))
+        {
             isWindows = true;
         }
 
-        if (SystemInfo.operatingSystem.Contains("Mac")) {
+        if (SystemInfo.operatingSystem.Contains("Mac"))
+        {
             isMac = true;
         }
         StartCoroutine(WaitOneFrame());
     }
 
-    IEnumerator WaitOneFrame() {
-        yield return null;
-        defaultPos = player.transform.localPosition;
-    }
-
-    private void Update() {
+    private void Update()
+    {
         rewardPerChar = gameManager.rewardPerChar;
     }
 
@@ -70,13 +70,81 @@ public class TypingManager : MonoBehaviour
                     }
                     break;
                 case 3:
-                    PlayMissTypeAnimation();
+                    Vector2 keyPosition = keyPositions[GetCharFromKeyCode(Event.current.keyCode)];
+                    List<char> nearbyKeys = new List<char>();
+                    foreach (var keyPos in keyPositions)
+                    {
+                        int distance = Mathf.Abs((int)keyPos.Value.x - (int)keyPosition.x) + Mathf.Abs((int)keyPos.Value.y - (int)keyPosition.y);
+                        if (distance <= 2)
+                        {
+                            nearbyKeys.Add(keyPos.Key);
+                        }
+                    }
+                    foreach (char nearbyKey in nearbyKeys)
+                    {
+                        int result = InputKey(nearbyKey);
+                        if (result == 1 || result == 2)
+                        {
+                            romanIndex++;
+                            if (_roman[romanIndex] == '@')
+                            {
+                                int reward = rewardPerChar * question.title.Length;
+                                gameManager.money += reward;
+                                gameManager.totalMoney += reward;
+                                InitializeQuestion();
+                            }
+                            else
+                            {
+                                romanText.text = GenerateRomanText();
+                            }
+                            break;
+                        }
+                        PlayMissTypeAnimation();
+                    }
                     break;
             }
         }
     }
 
+    IEnumerator WaitOneFrame()
+    {
+        yield return null;
+        defaultPos = player.transform.localPosition;
+    }
 
+    private void InitializeKeyPosition()
+    {
+        keyPositions = new Dictionary<char, Vector2>
+        {
+            {'z', new Vector2Int(0, 0)},
+            {'x', new Vector2Int(1, 0)},
+            {'c', new Vector2Int(2, 0)},
+            {'v', new Vector2Int(3, 0)},
+            {'b', new Vector2Int(4, 0)},
+            {'n', new Vector2Int(5, 0)},
+            {'m', new Vector2Int(6, 0)},
+            {'a', new Vector2Int(0, 1)},
+            {'s', new Vector2Int(1, 1)},
+            {'d', new Vector2Int(2, 1)},
+            {'f', new Vector2Int(3, 1)},
+            {'g', new Vector2Int(4, 1)},
+            {'h', new Vector2Int(5, 1)},
+            {'j', new Vector2Int(6, 1)},
+            {'k', new Vector2Int(7, 1)},
+            {'l', new Vector2Int(8, 1)},
+            {'q', new Vector2Int(0, 2)},
+            {'w', new Vector2Int(1, 2)},
+            {'e', new Vector2Int(2, 2)},
+            {'r', new Vector2Int(3, 2)},
+            {'t', new Vector2Int(4, 2)},
+            {'y', new Vector2Int(5, 2)},
+            {'u', new Vector2Int(6, 2)},
+            {'i', new Vector2Int(7, 2)},
+            {'o', new Vector2Int(8, 2)},
+            {'p', new Vector2Int(9, 2)},
+            {'-', new Vector2Int(10,3)}
+        };
+    }
 
     private void InitializeQuestion()
     {
@@ -98,7 +166,8 @@ public class TypingManager : MonoBehaviour
         romanText.text = GenerateRomanText();
     }
 
-    private void UpdateStatus() {
+    private void UpdateStatus()
+    {
         rewardPerChar = gameManager.rewardPerChar;
     }
 
@@ -120,6 +189,8 @@ public class TypingManager : MonoBehaviour
         {
             return 1;
         }
+
+
 
         //「い」の曖昧入力判定（Windowsのみ）
 
@@ -542,7 +613,8 @@ public class TypingManager : MonoBehaviour
         return text;
     }
 
-    private void PlayMissTypeAnimation() {
+    private void PlayMissTypeAnimation()
+    {
         shakeTween.Kill();
         player.transform.localPosition = defaultPos;
         shakeTween = player.transform.DOShakePosition(0.1f, 5f, 30, 1, false, true);

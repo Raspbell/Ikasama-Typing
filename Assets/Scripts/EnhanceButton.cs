@@ -10,7 +10,8 @@ public class EnhanceButton : MonoBehaviour
     [SerializeField] GameManager gameManager;
     [SerializeField] Type type;
 
-    public enum Type {
+    public enum Type
+    {
         WorkersNum,
         RewardPerChar,
         TypingCycle,
@@ -20,7 +21,13 @@ public class EnhanceButton : MonoBehaviour
         None
     }
 
-    public void OnClicked() {
+    private void Update()
+    {
+        text.text = gameManager.GetLevelCost(type, gameManager.levels[type]).ToString();
+    }
+
+    public void OnClicked()
+    {
         gameManager.OnButtonClicked(type, text);
     }
 }

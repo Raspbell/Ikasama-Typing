@@ -12,6 +12,7 @@ public class QuestionPropety : ScriptableObject
     {
         public string title;
         public string roman;
+        public int charCount;
     }
 
     public Question[] questions;
