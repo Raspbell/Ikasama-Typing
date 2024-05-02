@@ -13,21 +13,6 @@ MonoBehaviour:
   m_Name: QuestionPropety
   m_EditorClassIdentifier: 
   questions:
-  - title: "\u304B\u3089\u3042\u3052"
-    roman: karaage
-  - title: "\u30CF\u30F3\u30D0\u30FC\u30B0"
-    roman: hanba-gu
-  - title: "\u3068\u3093\u304B\u3064"
-    roman: tonkatu
-  - title: "\u6B7B\u306F\u6551\u6E08"
-    roman: sihakyuusai
-  - title: "\u5730\u7344\u7D75\u56F3"
-    roman: zigokuezu
-  - title: "\u534A\u4FE1\u534A\u7591"
-    roman: hansinhangi
-  - title: "\u6700\u4F4E\u6700\u60AA"
-    roman: saiteisaiaku
-  - title: "\u30B5\u30FC\u30D3\u30B9\u6B8B\u696D"
-    roman: sa-bisuzangyou
-  - title: "\u6709\u7D66\u4F11\u6687"
-    roman: yuukyuukyuuka
+  - title: "\u3042\u3042\u3042\u3042\u3042"
+    roman: aaaaa
+    charCount: 5
