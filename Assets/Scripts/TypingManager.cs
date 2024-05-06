@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using TMPro;
 using UnityEngine;
 using static QuestionPropety;
@@ -14,14 +15,20 @@ public class TypingManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI titleText;
     [SerializeField] TextMeshProUGUI romanText;
     [SerializeField] GameObject player;
+    [SerializeField] GameObject playerModel;
+    [SerializeField] GameObject coin;
+    [SerializeField] Canvas coinCanvas;
 
     private GameManager gameManager;
     private QuestionPropety.Question question;
     private List<char> _roman = new List<char>();
-    private int rewardPerChar;
+    private float rewardPerChar;
+    private float noMissBonus;
+    private float ikasamaProbability;
     private int romanIndex = 0;
     private bool isWindows;
     private bool isMac;
+    private bool isMissed = false;
     private Tween shakeTween;
     private Vector3 defaultPos;
     private Dictionary<char, Vector2> keyPositions;
@@ -46,6 +53,19 @@ public class TypingManager : MonoBehaviour
     private void Update()
     {
         rewardPerChar = gameManager.rewardPerChar;
+        ikasamaProbability = gameManager.ikasamaProbability;
+        noMissBonus = gameManager.noMissBonus;
+        string testtext = "";
+        for (int i = 0; i < _roman.Count; i++)
+        {
+            if (_roman[i] == '@')
+            {
+                break;
+            }
+
+            testtext += _roman[i];
+        }
+        Debug.Log(testtext);
     }
 
     private void OnGUI()
@@ -56,55 +76,68 @@ public class TypingManager : MonoBehaviour
             {
                 case 1:
                 case 2:
-                    romanIndex++;
-                    if (_roman[romanIndex] == '@')
-                    {
-                        int reward = rewardPerChar * question.title.Length;
-                        gameManager.money += reward;
-                        gameManager.totalMoney += reward;
-                        InitializeQuestion();
-                    }
-                    else
-                    {
-                        romanText.text = GenerateRomanText();
-                    }
+                    CorrectInput();
                     break;
                 case 3:
-                    Vector2 keyPosition = keyPositions[GetCharFromKeyCode(Event.current.keyCode)];
-                    List<char> nearbyKeys = new List<char>();
-                    foreach (var keyPos in keyPositions)
+                    Vector2 keyPosition;
+                    char keyChar = GetCharFromKeyCode(Event.current.keyCode);
+                    if (keyPositions.TryGetValue(keyChar, out keyPosition))
                     {
-                        int distance = Mathf.Abs((int)keyPos.Value.x - (int)keyPosition.x) + Mathf.Abs((int)keyPos.Value.y - (int)keyPosition.y);
-                        if (distance <= 2)
+                        List<char> nearbyKeys = new List<char>();
+                        List<char> subNearbyKeys = new List<char>();
+                        foreach (var keyPos in keyPositions)
                         {
-                            nearbyKeys.Add(keyPos.Key);
+                            int distance = Mathf.Abs((int)keyPos.Value.x - (int)keyPosition.x) + Mathf.Abs((int)keyPos.Value.y - (int)keyPosition.y);
+                            if (distance <= (int)Math.Floor(ikasamaProbability / 4))
+                            {
+                                nearbyKeys.Add(keyPos.Key);
+                            }
+                            if (distance == (int)Math.Floor(ikasamaProbability / 4) + 1)
+                            {
+                                subNearbyKeys.Add(keyPos.Key);
+                            }
                         }
-                    }
-                    foreach (char nearbyKey in nearbyKeys)
-                    {
-                        int result = InputKey(nearbyKey);
-                        if (result == 1 || result == 2)
+                        Debug.Log(nearbyKeys.Count);
+                        Debug.Log(subNearbyKeys.Count);
+                        bool correctTypeFlag = false;
+                        foreach (char nearbyKey in nearbyKeys)
                         {
-                            romanIndex++;
-                            if (_roman[romanIndex] == '@')
+                            int result = InputKey(nearbyKey);
+                            if (result == 1 || result == 2)
                             {
-                                int reward = rewardPerChar * question.title.Length;
-                                gameManager.money += reward;
-                                gameManager.totalMoney += reward;
-                                InitializeQuestion();
+                                CorrectInput();
+                                correctTypeFlag = true;
+                                break;
                             }
-                            else
-                            {
-                                romanText.text = GenerateRomanText();
-                            }
-                            break;
                         }
-                        PlayMissTypeAnimation();
+                        if (!correctTypeFlag && subNearbyKeys.Count > 0)  // subNearbyKeysが空でない場合のみ実行
+                        {
+                            foreach (char subNearbyKey in subNearbyKeys)
+                            {
+                                int result = InputKey(subNearbyKey);
+                                if (result == 1 || result == 2)
+                                {
+                                    float probabilityFraction = ikasamaProbability / 4 - Mathf.Floor(ikasamaProbability / 4);
+                                    if (UnityEngine.Random.Range(0f, 1f) < probabilityFraction)
+                                    {
+                                        CorrectInput();
+                                        correctTypeFlag = true;
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                        if (!correctTypeFlag)
+                        {
+                            isMissed = true;
+                            PlayMissTypeAnimation();
+                        }
                     }
                     break;
             }
         }
     }
+
 
     IEnumerator WaitOneFrame()
     {
@@ -146,7 +179,34 @@ public class TypingManager : MonoBehaviour
         };
     }
 
-    private void InitializeQuestion()
+    private void CorrectInput()
+    {
+        romanIndex++;
+        if (_roman[romanIndex] == '@')
+        {
+            int reward = (int)Math.Round(rewardPerChar * question.charCount, MidpointRounding.AwayFromZero);
+            if (!isMissed)
+            {
+                reward = (int)Math.Round(noMissBonus * reward, MidpointRounding.AwayFromZero);
+            }
+            gameManager.money += reward;
+            gameManager.totalMoney += reward;
+            isMissed = false;
+            InitializeQuestion();
+            if (coin != null)
+            {
+                var coinObj = Instantiate(coin, playerModel.transform.position, Quaternion.identity);
+                coinObj.transform.SetParent(coinCanvas.transform);
+                coinObj.transform.localScale = Vector3.one;
+            }
+        }
+        else
+        {
+            romanText.text = GenerateRomanText();
+        }
+    }
+
+    public void InitializeQuestion()
     {
         question = questionPropety.questions[UnityEngine.Random.Range(0, questionPropety.questions.Length)];
 
@@ -243,12 +303,12 @@ public class TypingManager : MonoBehaviour
         }
 
         //「か」「く」「こ」の曖昧入力判定（Windowsのみ）
-        if (isWindows && inputChar == 'c' && prevChar != 'k' &&
-            currentChar == 'k' == (nextChar == 'a' || nextChar == 'u' || nextChar == 'o'))
+        if (isWindows && inputChar == 'c' && prevChar != 'k' && currentChar == 'k' && (nextChar == 'a' || nextChar == 'u' || nextChar == 'o'))
         {
             _roman[romanIndex] = 'c';
             return 2;
         }
+
 
         //「く」の曖昧入力判定（Windowsのみ）
         if (isWindows && inputChar == 'q' && prevChar != 'k' && currentChar == 'k' && nextChar == 'u')
@@ -460,6 +520,7 @@ public class TypingManager : MonoBehaviour
             return 2;
         }
 
+
         //「きゃ」「にゃ」などを分解する
         if (inputChar == 'i' && currentChar == 'y' &&
             (prevChar == 'k' || prevChar == 's' || prevChar == 't' || prevChar == 'n' || prevChar == 'h' ||
@@ -592,7 +653,6 @@ public class TypingManager : MonoBehaviour
         return 3;
     }
 
-
     private string GenerateRomanText()
     {
         string text = "<style=typed>";
@@ -620,70 +680,114 @@ public class TypingManager : MonoBehaviour
         shakeTween = player.transform.DOShakePosition(0.1f, 5f, 30, 1, false, true);
     }
 
-    private char GetCharFromKeyCode(KeyCode keyCode)
+    char GetCharFromKeyCode(KeyCode keyCode)
     {
-        if (keyCode >= KeyCode.A && keyCode <= KeyCode.Z)
+        switch (keyCode)
         {
-            char character = (char)((int)keyCode - KeyCode.A + 'a');
-            return character;
-        }
-        else
-        {
-            switch (keyCode)
-            {
-                case KeyCode.Alpha0:
-                    return '0';
-                case KeyCode.Alpha1:
-                    return '1';
-                case KeyCode.Alpha2:
-                    return '2';
-                case KeyCode.Alpha3:
-                    return '3';
-                case KeyCode.Alpha4:
-                    return '4';
-                case KeyCode.Alpha5:
-                    return '5';
-                case KeyCode.Alpha6:
-                    return '6';
-                case KeyCode.Alpha7:
-                    return '7';
-                case KeyCode.Alpha8:
-                    return '8';
-                case KeyCode.Alpha9:
-                    return '9';
-                case KeyCode.Minus:
-                    return '-';
-                case KeyCode.Caret:
-                    return '^';
-                case KeyCode.Backslash:
-                    return '\\';
-                case KeyCode.At:
-                    return '@';
-                case KeyCode.LeftBracket:
-                    return '[';
-                case KeyCode.Semicolon:
-                    return ';';
-                case KeyCode.Colon:
-                    return ':';
-                case KeyCode.RightBracket:
-                    return ']';
-                case KeyCode.Comma:
-                    return ',';
-                case KeyCode.Period:
-                    return '_';
-                case KeyCode.Slash:
-                    return '/';
-                case KeyCode.Underscore:
-                    return '_';
-                case KeyCode.Backspace:
-                    return '\b';
-                case KeyCode.Return:
-                    return '\r';
-                case KeyCode.Space:
-                    return ' ';
-                default:
-                    return '\0';
-            }
+            case KeyCode.A:
+                return 'a';
+            case KeyCode.B:
+                return 'b';
+            case KeyCode.C:
+                return 'c';
+            case KeyCode.D:
+                return 'd';
+            case KeyCode.E:
+                return 'e';
+            case KeyCode.F:
+                return 'f';
+            case KeyCode.G:
+                return 'g';
+            case KeyCode.H:
+                return 'h';
+            case KeyCode.I:
+                return 'i';
+            case KeyCode.J:
+                return 'j';
+            case KeyCode.K:
+                return 'k';
+            case KeyCode.L:
+                return 'l';
+            case KeyCode.M:
+                return 'm';
+            case KeyCode.N:
+                return 'n';
+            case KeyCode.O:
+                return 'o';
+            case KeyCode.P:
+                return 'p';
+            case KeyCode.Q:
+                return 'q';
+            case KeyCode.R:
+                return 'r';
+            case KeyCode.S:
+                return 's';
+            case KeyCode.T:
+                return 't';
+            case KeyCode.U:
+                return 'u';
+            case KeyCode.V:
+                return 'v';
+            case KeyCode.W:
+                return 'w';
+            case KeyCode.X:
+                return 'x';
+            case KeyCode.Y:
+                return 'y';
+            case KeyCode.Z:
+                return 'z';
+            case KeyCode.Alpha0:
+                return '0';
+            case KeyCode.Alpha1:
+                return '1';
+            case KeyCode.Alpha2:
+                return '2';
+            case KeyCode.Alpha3:
+                return '3';
+            case KeyCode.Alpha4:
+                return '4';
+            case KeyCode.Alpha5:
+                return '5';
+            case KeyCode.Alpha6:
+                return '6';
+            case KeyCode.Alpha7:
+                return '7';
+            case KeyCode.Alpha8:
+                return '8';
+            case KeyCode.Alpha9:
+                return '9';
+            case KeyCode.Minus:
+                return '-';
+            case KeyCode.Caret:
+                return '^';
+            case KeyCode.Backslash:
+                return '\\';
+            case KeyCode.At:
+                return '@';
+            case KeyCode.LeftBracket:
+                return '[';
+            case KeyCode.Semicolon:
+                return ';';
+            case KeyCode.Colon:
+                return ':';
+            case KeyCode.RightBracket:
+                return ']';
+            case KeyCode.Comma:
+                return ',';
+            case KeyCode.Period:
+                return '.';
+            case KeyCode.Slash:
+                return '/';
+            case KeyCode.Underscore:
+                return '_';
+            case KeyCode.Backspace:
+                return '\b';
+            case KeyCode.Return:
+                return '\r';
+            case KeyCode.Space:
+                return ' ';
+            default: //上記以外のキーが押された場合は「null文字」を返す。
+                return '\0';
         }
     }
 }

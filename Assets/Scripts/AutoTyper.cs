@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using TMPro;
 using UnityEngine;
+using System;
 
 public class AutoTyper : MonoBehaviour
 {
@@ -11,41 +12,69 @@ public class AutoTyper : MonoBehaviour
     [SerializeField] QuestionPropety questionPropety;
     [SerializeField] TextMeshProUGUI titleText;
     [SerializeField] TextMeshProUGUI romanText;
+    [SerializeField] AudioClip[] typeSounds;
+    [SerializeField] Animator animator;
+    [SerializeField] GameObject coin;
+    [HideInInspector] public float time;
 
-    public float time;
     private QuestionPropety.Question question;
     private List<char> roman = new List<char>();
+    private bool isMissed = false;
     private GameManager gameManager;
+    private AudioSource audioSource;
+    private Canvas coinCanvas;
+    private Vector3 defaultPos;
+    private Tween shakeTween;
     private int romanIndex = 0;
-
     private int workersNum;
-    private int rewardPerChar;
+    private float rewardPerChar;
     private float typingCycle;
     private float missTypeProbability;
-    private float missTypePenalty;
+    private float noMissBonus;
 
     private void Start()
     {
         time = 0;
+        transform.rotation = Camera.main.transform.rotation;
         gameManager = FindObjectOfType<GameManager>();
+        audioSource = GetComponent<AudioSource>();
+        coinCanvas = GameObject.Find("Canvas Coin").GetComponent<Canvas>();
         InitializeQuestion();
+        StartCoroutine(WaitOneFrame());
     }
 
     private void Update()
     {
         UpdateStatus();
+        audioSource.volume = OptionUI.seLevel;
+        if (animator != null)
+        {
+            animator.speed = Mathf.Min(1000f, 1 / typingCycle);
+        }
         time += Time.deltaTime;
         if (time > typingCycle)
         {
+            audioSource.PlayOneShot(typeSounds[UnityEngine.Random.Range(0, typeSounds.Length)]);
             time = 0;
-            if (missTypeProbability < Random.Range(0f, 1f))
+            if (missTypeProbability < UnityEngine.Random.Range(0f, 1f))
             {
                 romanIndex++;
                 if (roman[romanIndex] == '@')
                 {
-                    int reward = rewardPerChar * question.title.Length;
+                    int reward = (int)Math.Round(rewardPerChar * question.charCount, MidpointRounding.AwayFromZero);
+                    if (!isMissed)
+                    {
+                        reward = (int)Math.Round(noMissBonus * reward, MidpointRounding.AwayFromZero);
+                    }
                     gameManager.money += reward;
                     gameManager.totalMoney += reward;
+                    if (coin != null)
+                    {
+                        var coinObj = Instantiate(coin, transform.position, Quaternion.identity);
+                        coinObj.transform.SetParent(coinCanvas.transform);
+                        coinObj.transform.localScale = Vector3.one;
+                    }
+                    isMissed = false;
                     InitializeQuestion();
                 }
                 else
@@ -55,10 +84,16 @@ public class AutoTyper : MonoBehaviour
             }
             else
             {
-                time -= missTypePenalty;
                 MissTypeAnimation();
+                isMissed = true;
             }
         }
+    }
+
+    IEnumerator WaitOneFrame()
+    {
+        yield return null;
+        defaultPos = transform.localPosition;
     }
 
     private void UpdateStatus()
@@ -67,11 +102,13 @@ public class AutoTyper : MonoBehaviour
         rewardPerChar = gameManager.rewardPerChar;
         typingCycle = gameManager.typingCycle;
         missTypeProbability = gameManager.missTypeProbability;
-        missTypePenalty = gameManager.missTypePenalty;
+        noMissBonus = gameManager.noMissBonus;
     }
     private void MissTypeAnimation()
     {
-        transform.DOShakePosition(0.1f, 5f, 30, 1, false, true);
+        shakeTween.Kill();
+        transform.localPosition = defaultPos;
+        shakeTween = transform.DOShakePosition(0.1f, 5f, 30, 1, false, true);
     }
 
     private string GenerateRomanText()
