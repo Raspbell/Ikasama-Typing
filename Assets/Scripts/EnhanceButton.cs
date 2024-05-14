@@ -41,7 +41,7 @@ public class EnhanceButton : MonoBehaviour
 
     public void Update()
     {
-        text.text = gameManager.GetLevelCost(type, gameManager.levels[type]).ToString();
+        text.text = GameManager.GetLevelCost(type, GameManager.levels[type]).ToString();
         if (Input.GetKeyDown(KeyCode.Alpha1) && type == Type.WorkersNum)
         {
             OnClicked();
@@ -82,8 +82,8 @@ public class EnhanceButton : MonoBehaviour
             explaination = explaination.Replace("\\n", Environment.NewLine);
         }
         explainationText.text = explaination;
-        float nowValue = gameManager.GetLevelValue(type, gameManager.levels[type]);
-        float nextValue = gameManager.GetLevelValue(type, gameManager.levels[type] + 1);
+        float nowValue = GameManager.GetLevelValue(type, GameManager.levels[type]);
+        float nextValue = GameManager.GetLevelValue(type, GameManager.levels[type] + 1);
         explainationPanel.transform.localPosition = panelPos;
         explainationPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(panelWidth, panelHeight);
         switch (type)
@@ -117,7 +117,7 @@ public class EnhanceButton : MonoBehaviour
 
     public void OnClicked()
     {
-        if (gameManager.money >= gameManager.GetLevelCost(type, gameManager.levels[type]))
+        if (GameManager.money >= GameManager.GetLevelCost(type, GameManager.levels[type]))
         {
             gameManager.OnButtonClicked(type, text);
             audioSource.volume = OptionUI.seLevel;

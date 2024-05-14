@@ -18,9 +18,47 @@ public class StartTyping : MonoBehaviour
     private bool isMac;
     private Tween shakeTween;
 
+    public void SavePrefs(){
+        PlayerPrefs.SetInt("WorkersNumLevel", GameManager.levels[EnhanceButton.Type.WorkersNum]);
+        PlayerPrefs.SetInt("RewardPerCharLevel", GameManager.levels[EnhanceButton.Type.RewardPerChar]);
+        PlayerPrefs.SetInt("TypingCycleLevel", GameManager.levels[EnhanceButton.Type.TypingCycle]);
+        PlayerPrefs.SetInt("MissTypeProbabilityLevel", GameManager.levels[EnhanceButton.Type.MissTypeProbability]);
+        PlayerPrefs.SetInt("NoMissBonusLevel", GameManager.levels[EnhanceButton.Type.NoMissBonus]);
+        PlayerPrefs.SetInt("IkasamaLevel", GameManager.levels[EnhanceButton.Type.Ikasama]);
+        string money = GameManager.money.ToString();
+        string totalMoney = GameManager.totalMoney.ToString();
+        PlayerPrefs.SetString("Money", money);
+        PlayerPrefs.SetString("TotalMoney", totalMoney);
+    }
+
+    public void LoadPrefs(){
+        if(PlayerPrefs.HasKey("WorkersNumLevel")){
+            GameManager.levels[EnhanceButton.Type.WorkersNum] = PlayerPrefs.GetInt("WorkersNumLevel");
+            GameManager.levels[EnhanceButton.Type.RewardPerChar] = PlayerPrefs.GetInt("RewardPerCharLevel");
+            GameManager.levels[EnhanceButton.Type.TypingCycle] = PlayerPrefs.GetInt("TypingCycleLevel");
+            GameManager.levels[EnhanceButton.Type.MissTypeProbability] = PlayerPrefs.GetInt("MissTypeProbabilityLevel");
+            GameManager.levels[EnhanceButton.Type.NoMissBonus] = PlayerPrefs.GetInt("NoMissBonusLevel");
+            GameManager.levels[EnhanceButton.Type.Ikasama] = PlayerPrefs.GetInt("IkasamaLevel");
+            GameManager.money = long.Parse(PlayerPrefs.GetString("Money"));
+            GameManager.totalMoney = long.Parse(PlayerPrefs.GetString("TotalMoney"));
+        }
+        else{
+            foreach (EnhanceButton.Type type in System.Enum.GetValues(typeof(EnhanceButton.Type)))
+            {
+                GameManager.levels[type] = 0;
+            }
+        }
+        GameManager.workersNum.Value = (int)GameManager.GetLevelValue(EnhanceButton.Type.WorkersNum, GameManager.levels[EnhanceButton.Type.WorkersNum]);
+        GameManager.rewardPerChar = GameManager.GetLevelValue(EnhanceButton.Type.RewardPerChar, GameManager.levels[EnhanceButton.Type.RewardPerChar]);
+        GameManager.typingCycle = GameManager.GetLevelValue(EnhanceButton.Type.TypingCycle, GameManager.levels[EnhanceButton.Type.TypingCycle]);
+        GameManager.missTypeProbability = GameManager.GetLevelValue(EnhanceButton.Type.MissTypeProbability, GameManager.levels[EnhanceButton.Type.MissTypeProbability]);
+        GameManager.noMissBonus = GameManager.GetLevelValue(EnhanceButton.Type.NoMissBonus, GameManager.levels[EnhanceButton.Type.NoMissBonus]);
+        GameManager.ikasamaProbability = GameManager.GetLevelValue(EnhanceButton.Type.Ikasama, GameManager.levels[EnhanceButton.Type.Ikasama]);
+    }
+
     private void Start()
     {
-
+        LoadPrefs();
         DetectOperatingSystem();
         InitializeQuestion();
         if (SystemInfo.operatingSystem.Contains("Windows"))

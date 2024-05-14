@@ -19,7 +19,6 @@ public class TypingManager : MonoBehaviour
     [SerializeField] GameObject coin;
     [SerializeField] Canvas coinCanvas;
 
-    private GameManager gameManager;
     private QuestionPropety.Question question;
     private List<char> _roman = new List<char>();
     private float rewardPerChar;
@@ -35,7 +34,6 @@ public class TypingManager : MonoBehaviour
 
     private void Start()
     {
-        gameManager = GetComponent<GameManager>();
         InitializeQuestion();
         InitializeKeyPosition();
         if (SystemInfo.operatingSystem.Contains("Windows"))
@@ -52,9 +50,9 @@ public class TypingManager : MonoBehaviour
 
     private void Update()
     {
-        rewardPerChar = gameManager.rewardPerChar;
-        ikasamaProbability = gameManager.ikasamaProbability;
-        noMissBonus = gameManager.noMissBonus;
+        rewardPerChar = GameManager.rewardPerChar;
+        ikasamaProbability = GameManager.ikasamaProbability;
+        noMissBonus = GameManager.noMissBonus;
         string testtext = "";
         for (int i = 0; i < _roman.Count; i++)
         {
@@ -65,7 +63,6 @@ public class TypingManager : MonoBehaviour
 
             testtext += _roman[i];
         }
-        Debug.Log(testtext);
     }
 
     private void OnGUI()
@@ -189,8 +186,8 @@ public class TypingManager : MonoBehaviour
             {
                 reward = (int)Math.Round(noMissBonus * reward, MidpointRounding.AwayFromZero);
             }
-            gameManager.money += reward;
-            gameManager.totalMoney += reward;
+            GameManager.money += reward;
+            GameManager.totalMoney += reward;
             isMissed = false;
             InitializeQuestion();
             if (coin != null)
@@ -228,7 +225,7 @@ public class TypingManager : MonoBehaviour
 
     private void UpdateStatus()
     {
-        rewardPerChar = gameManager.rewardPerChar;
+        rewardPerChar = GameManager.rewardPerChar;
     }
 
     private int InputKey(char inputChar)

@@ -66,8 +66,8 @@ public class AutoTyper : MonoBehaviour
                     {
                         reward = (int)Math.Round(noMissBonus * reward, MidpointRounding.AwayFromZero);
                     }
-                    gameManager.money += reward;
-                    gameManager.totalMoney += reward;
+                    GameManager.money += reward;
+                    GameManager.totalMoney += reward;
                     if (coin != null)
                     {
                         var coinObj = Instantiate(coin, transform.position, Quaternion.identity);
@@ -98,11 +98,11 @@ public class AutoTyper : MonoBehaviour
 
     private void UpdateStatus()
     {
-        workersNum = gameManager.workersNum.Value;
-        rewardPerChar = gameManager.rewardPerChar;
-        typingCycle = gameManager.typingCycle;
-        missTypeProbability = gameManager.missTypeProbability;
-        noMissBonus = gameManager.noMissBonus;
+        workersNum = GameManager.workersNum.Value;
+        rewardPerChar = GameManager.rewardPerChar;
+        typingCycle = GameManager.typingCycle;
+        missTypeProbability = GameManager.missTypeProbability;
+        noMissBonus = GameManager.noMissBonus;
     }
     private void MissTypeAnimation()
     {

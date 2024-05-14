@@ -30,19 +30,19 @@ public class GameManager : MonoBehaviour
 
     private float time = 0;
 
-    public long money;
-    public long totalMoney;
-    public ReactiveProperty<int> workersNum = new ReactiveProperty<int>();
-    public float rewardPerChar;
-    public float typingCycle;
-    public float missTypeProbability;
-    public float noMissBonus;
-    public float ikasamaProbability;
+    public static long money;
+    public static long totalMoney;
+    public static ReactiveProperty<int> workersNum = new ReactiveProperty<int>();
+    public static float rewardPerChar;
+    public static float typingCycle;
+    public static float missTypeProbability;
+    public static float noMissBonus;
+    public static float ikasamaProbability;
 
-    public Dictionary<EnhanceButton.Type, int> levels = new Dictionary<EnhanceButton.Type, int>();
-    public Dictionary<EnhanceButton.Type, float> maxLevels = new Dictionary<EnhanceButton.Type, float>();
-    public Dictionary<EnhanceButton.Type, float> growthRates = new Dictionary<EnhanceButton.Type, float>();
-    public Dictionary<EnhanceButton.Type, long> baseCosts = new Dictionary<EnhanceButton.Type, long>();
+    public static Dictionary<EnhanceButton.Type, int> levels = new Dictionary<EnhanceButton.Type, int>();
+    public static Dictionary<EnhanceButton.Type, float> maxLevels = new Dictionary<EnhanceButton.Type, float>();
+    public static Dictionary<EnhanceButton.Type, float> growthRates = new Dictionary<EnhanceButton.Type, float>();
+    public static Dictionary<EnhanceButton.Type, long> baseCosts = new Dictionary<EnhanceButton.Type, long>();
 
     private Vector3[] workerPositions = new Vector3[]
     {
@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour
         UpdateStats(type);
     }
 
-    public string GetTypeName(EnhanceButton.Type type)
+    public static string GetTypeName(EnhanceButton.Type type)
     {
         switch (type)
         {
@@ -162,7 +162,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public long GetLevelCost(EnhanceButton.Type type, int level)
+    public static long GetLevelCost(EnhanceButton.Type type, int level)
     {
         long baseCost = baseCosts[type];
         // Mathf.Powを使用してレベルコストの増加を計算
@@ -172,7 +172,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public float GetLevelValue(EnhanceButton.Type type, int level)
+    public static float GetLevelValue(EnhanceButton.Type type, int level)
     {
         switch (type)
         {
