@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using unityroom.Api;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -64,24 +65,18 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        foreach (EnhanceButton.Type type in System.Enum.GetValues(typeof(EnhanceButton.Type)))
+        foreach (EnhanceButton.Type type in Enum.GetValues(typeof(EnhanceButton.Type)))
         {
-            levels[type] = 0;
             growthRates[type] = 1.1f;
             baseCosts[type] = 10;
+            maxLevels[type] = 1000;
         }
-        maxLevels[EnhanceButton.Type.WorkersNum] = 1000;
-        maxLevels[EnhanceButton.Type.RewardPerChar] = 1000;
-        maxLevels[EnhanceButton.Type.TypingCycle] = 1000;
-        maxLevels[EnhanceButton.Type.MissTypeProbability] = 1000;
-        maxLevels[EnhanceButton.Type.NoMissBonus] = 1000;
-        maxLevels[EnhanceButton.Type.Ikasama] = 1000;
-        workersNum.Value = 0;
-        rewardPerChar = 1;
-        typingCycle = 1;
-        missTypeProbability = 0.5f;
-        noMissBonus = 1;
-        ikasamaProbability = 0;
+        workersNum.Value = (int)GetLevelValue(EnhanceButton.Type.WorkersNum, levels[EnhanceButton.Type.WorkersNum]);
+        rewardPerChar = GetLevelValue(EnhanceButton.Type.RewardPerChar, levels[EnhanceButton.Type.RewardPerChar]);
+        typingCycle = GetLevelValue(EnhanceButton.Type.TypingCycle, levels[EnhanceButton.Type.TypingCycle]);
+        missTypeProbability = GetLevelValue(EnhanceButton.Type.MissTypeProbability, levels[EnhanceButton.Type.MissTypeProbability]);
+        noMissBonus = GetLevelValue(EnhanceButton.Type.NoMissBonus, levels[EnhanceButton.Type.NoMissBonus]);
+        ikasamaProbability = GetLevelValue(EnhanceButton.Type.Ikasama, levels[EnhanceButton.Type.Ikasama]);
         workersNum.Subscribe(num =>
         {
             if (num >= 2)
@@ -108,14 +103,12 @@ public class GameManager : MonoBehaviour
             }
         });
         Sequence mySequence = DOTween.Sequence();
-
-        // Orthographic size、位置、回転のアニメーションを Sequence に追加
         mySequence
-            .Join(Camera.main.DOOrthoSize(5, cameraMoveDuration)) // カメラのサイズを変更
-            .Join(Camera.main.transform.DOMove(cameraPosition, cameraMoveDuration)) // カメラの位置を移動
+            .Join(Camera.main.DOOrthoSize(5, cameraMoveDuration))
+            .Join(Camera.main.transform.DOMove(cameraPosition, cameraMoveDuration))
             .Join(Camera.main.transform.DORotate(cameraRotation, cameraMoveDuration))
             .SetEase(Ease.InOutSine)
-            .OnComplete(() => allUI.transform.DOScale(Vector3.one, 1f)); // カメラの回転を変更
+            .OnComplete(() => Initialize());
     }
 
     private void Update()
@@ -128,6 +121,25 @@ public class GameManager : MonoBehaviour
             {
                 UnityroomApiClient.Instance.SendScore(1, totalMoney, ScoreboardWriteMode.Always);
             }
+            StartTyping.SavePrefs();
+        }
+    }
+
+    private void Initialize()
+    {
+        allUI.transform.DOScale(Vector3.one, 1f)
+            .OnComplete(() =>
+            {
+                StartCoroutine(InstantiateWorkersCoroutine());
+            });
+    }
+
+    private IEnumerator InstantiateWorkersCoroutine()
+    {
+        for (int i = 1; i <= workersNum.Value; i++)
+        {
+            InstantiateWorker(i);
+            yield return new WaitForSeconds(0.25f);
         }
     }
 
@@ -135,7 +147,6 @@ public class GameManager : MonoBehaviour
     {
         int currentLevel = levels[type];
         long currentCost = GetLevelCost(type, currentLevel);
-        Debug.Log(currentCost);
         money -= currentCost;
         levels[type]++;
         UpdateStats(type);
@@ -199,22 +210,7 @@ public class GameManager : MonoBehaviour
         switch (type)
         {
             case EnhanceButton.Type.WorkersNum:
-                workersNum.Value = (int)GetLevelValue(type, currentLevel);
-                if (workersNum.Value < workerPositions.Length)
-                {
-                    GameObject obj = Instantiate(worker);
-                    obj.transform.position = workerPositions[workersNum.Value - 1] + new Vector3(0, 10, 0);
-                    obj.transform.DOLocalMove(workerPositions[workersNum.Value - 1], 1f).SetEase(Ease.OutBounce);
-                    obj.transform.localScale = Vector3.one;
-                }
-                else
-                {
-                    GameObject obj = Instantiate(additionalWorker);
-                    obj.transform.position = new Vector3(-7.739688f, 8.918709f, -11.76969f);
-                    obj.transform.rotation = Camera.main.transform.rotation;
-                    additionalWorkers.transform.DOLocalMoveY(190f, 1f);
-                    additionalWorkersText.text = $"+ {workersNum.Value - workerPositions.Length + 1}";
-                }
+                InstantiateWorker(currentLevel);
                 break;
             case EnhanceButton.Type.RewardPerChar:
                 rewardPerChar = (int)GetLevelValue(type, currentLevel);
@@ -231,6 +227,25 @@ public class GameManager : MonoBehaviour
             case EnhanceButton.Type.Ikasama:
                 ikasamaProbability = GetLevelValue(type, currentLevel);
                 break;
+        }
+    }
+
+    public void InstantiateWorker(int level)
+    {
+        if (level < workerPositions.Length)
+        {
+            GameObject obj = Instantiate(worker);
+            obj.transform.position = workerPositions[level - 1] + new Vector3(0, 10, 0);
+            obj.transform.DOLocalMove(workerPositions[level - 1], 1f).SetEase(Ease.OutBounce);
+            obj.transform.localScale = Vector3.one;
+        }
+        else
+        {
+            GameObject obj = Instantiate(additionalWorker);
+            obj.transform.position = new Vector3(-7.739688f, 8.918709f, -11.76969f);
+            obj.transform.rotation = Camera.main.transform.rotation;
+            additionalWorkers.transform.DOLocalMoveY(190f, 1f);
+            additionalWorkersText.text = $"+ {level - workerPositions.Length + 1}";
         }
     }
 }

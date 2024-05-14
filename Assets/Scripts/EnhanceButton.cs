@@ -123,6 +123,7 @@ public class EnhanceButton : MonoBehaviour
             audioSource.volume = OptionUI.seLevel;
             audioSource.PlayOneShot(purchaseClip);
             OnEnter();
+            StartTyping.SavePrefs();
         }
     }
 }

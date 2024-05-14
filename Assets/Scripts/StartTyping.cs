@@ -18,7 +18,8 @@ public class StartTyping : MonoBehaviour
     private bool isMac;
     private Tween shakeTween;
 
-    public void SavePrefs(){
+    public static void SavePrefs()
+    {
         PlayerPrefs.SetInt("WorkersNumLevel", GameManager.levels[EnhanceButton.Type.WorkersNum]);
         PlayerPrefs.SetInt("RewardPerCharLevel", GameManager.levels[EnhanceButton.Type.RewardPerChar]);
         PlayerPrefs.SetInt("TypingCycleLevel", GameManager.levels[EnhanceButton.Type.TypingCycle]);
@@ -31,8 +32,10 @@ public class StartTyping : MonoBehaviour
         PlayerPrefs.SetString("TotalMoney", totalMoney);
     }
 
-    public void LoadPrefs(){
-        if(PlayerPrefs.HasKey("WorkersNumLevel")){
+    public static void LoadPrefs()
+    {
+        if (PlayerPrefs.HasKey("WorkersNumLevel"))
+        {
             GameManager.levels[EnhanceButton.Type.WorkersNum] = PlayerPrefs.GetInt("WorkersNumLevel");
             GameManager.levels[EnhanceButton.Type.RewardPerChar] = PlayerPrefs.GetInt("RewardPerCharLevel");
             GameManager.levels[EnhanceButton.Type.TypingCycle] = PlayerPrefs.GetInt("TypingCycleLevel");
@@ -42,7 +45,8 @@ public class StartTyping : MonoBehaviour
             GameManager.money = long.Parse(PlayerPrefs.GetString("Money"));
             GameManager.totalMoney = long.Parse(PlayerPrefs.GetString("TotalMoney"));
         }
-        else{
+        else
+        {
             foreach (EnhanceButton.Type type in System.Enum.GetValues(typeof(EnhanceButton.Type)))
             {
                 GameManager.levels[type] = 0;

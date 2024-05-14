@@ -94,8 +94,6 @@ public class TypingManager : MonoBehaviour
                                 subNearbyKeys.Add(keyPos.Key);
                             }
                         }
-                        Debug.Log(nearbyKeys.Count);
-                        Debug.Log(subNearbyKeys.Count);
                         bool correctTypeFlag = false;
                         foreach (char nearbyKey in nearbyKeys)
                         {
