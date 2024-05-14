@@ -1,0 +1,1305 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f2482efc999cb04ea9a10cbf696b1f0, type: 3}
+  m_Name: Rome
+  m_EditorClassIdentifier: 
+  sheets:
+  - name: Sheet1
+    list:
+    - Japanese: "\u3042"
+      Rome1: a
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3044"
+      Rome1: i
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3046"
+      Rome1: u
+      Rome2: wu
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3048"
+      Rome1: e
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u304A"
+      Rome1: o
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u304B"
+      Rome1: ka
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u304D"
+      Rome1: ki
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u304F"
+      Rome1: ku
+      Rome2: qu
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3051"
+      Rome1: ke
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3053"
+      Rome1: ko
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3055"
+      Rome1: sa
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3057"
+      Rome1: si
+      Rome2: shi
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3059"
+      Rome1: su
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u305B"
+      Rome1: se
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u305D"
+      Rome1: so
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u305F"
+      Rome1: ta
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3061"
+      Rome1: ti
+      Rome2: chi
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3064"
+      Rome1: tu
+      Rome2: tsu
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3066"
+      Rome1: te
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3068"
+      Rome1: to
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u306A"
+      Rome1: na
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u306B"
+      Rome1: ni
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u306C"
+      Rome1: nu
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u306D"
+      Rome1: ne
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u306E"
+      Rome1: no
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u306F"
+      Rome1: ha
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3072"
+      Rome1: hi
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3075"
+      Rome1: hu
+      Rome2: fu
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3078"
+      Rome1: he
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u307B"
+      Rome1: ho
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u307E"
+      Rome1: ma
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u307F"
+      Rome1: mi
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3080"
+      Rome1: mu
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3081"
+      Rome1: me
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3082"
+      Rome1: mo
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3084"
+      Rome1: ya
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3086"
+      Rome1: yu
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3088"
+      Rome1: yo
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3089"
+      Rome1: ra
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u308A"
+      Rome1: ri
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u308B"
+      Rome1: ru
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u308C"
+      Rome1: re
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u308D"
+      Rome1: ro
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u308F"
+      Rome1: wa
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3092"
+      Rome1: wo
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3093"
+      Rome1: nn
+      Rome2: n
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u304C"
+      Rome1: ga
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u304E"
+      Rome1: gi
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3050"
+      Rome1: gu
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3052"
+      Rome1: ge
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3054"
+      Rome1: go
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3056"
+      Rome1: za
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3058"
+      Rome1: zi
+      Rome2: ji
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u305A"
+      Rome1: zu
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u305C"
+      Rome1: ze
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u305E"
+      Rome1: zo
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3060"
+      Rome1: da
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3062"
+      Rome1: di
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3065"
+      Rome1: du
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3067"
+      Rome1: de
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3069"
+      Rome1: do
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3070"
+      Rome1: ba
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3073"
+      Rome1: bi
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3076"
+      Rome1: bu
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3079"
+      Rome1: be
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u307C"
+      Rome1: bo
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3071"
+      Rome1: pa
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3074"
+      Rome1: pi
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3077"
+      Rome1: pu
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u307A"
+      Rome1: pe
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u307D"
+      Rome1: po
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3046\u3043"
+      Rome1: wi
+      Rome2: uxi
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3046\u3047"
+      Rome1: we
+      Rome2: uxe
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u304D\u3083"
+      Rome1: kya
+      Rome2: kixya
+      Rome3: kilya
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u304D\u3043"
+      Rome1: kyi
+      Rome2: kixi
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u304D\u3085"
+      Rome1: kyu
+      Rome2: kixyu
+      Rome3: kilyu
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u304D\u3047"
+      Rome1: kye
+      Rome2: kixe
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u304D\u3087"
+      Rome1: kyo
+      Rome2: kixyo
+      Rome3: kilyo
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3057\u3083"
+      Rome1: sya
+      Rome2: sha
+      Rome3: sixya
+      Rome4: shixya
+      Rome5: silya
+      Rome6: shilya
+      Rome7: "\xD7"
+    - Japanese: "\u3057\u3043"
+      Rome1: syi
+      Rome2: sixi
+      Rome3: shixi
+      Rome4: sili
+      Rome5: shili
+      Rome6: \n
+      Rome7: "\xD7"
+    - Japanese: "\u3057\u3085"
+      Rome1: syu
+      Rome2: shu
+      Rome3: sixyu
+      Rome4: shixyu
+      Rome5: silyu
+      Rome6: shillyu
+      Rome7: "\xD7"
+    - Japanese: "\u3057\u3047"
+      Rome1: sye
+      Rome2: she
+      Rome3: sixe
+      Rome4: shixe
+      Rome5: sile
+      Rome6: shile
+      Rome7: "\xD7"
+    - Japanese: "\u3057\u3087"
+      Rome1: syo
+      Rome2: sho
+      Rome3: sixyo
+      Rome4: shaxyo
+      Rome5: silyo
+      Rome6: shilyo
+      Rome7: "\xD7"
+    - Japanese: "\u3061\u3083"
+      Rome1: tya
+      Rome2: cha
+      Rome3: tixya
+      Rome4: chixya
+      Rome5: tilya
+      Rome6: chilya
+      Rome7: "\xD7"
+    - Japanese: "\u3061\u3043"
+      Rome1: tyi
+      Rome2: tixi
+      Rome3: chixi
+      Rome4: tili
+      Rome5: chili
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3061\u3085"
+      Rome1: tyu
+      Rome2: chu
+      Rome3: tixyu
+      Rome4: chixyu
+      Rome5: tilyu
+      Rome6: chilyu
+      Rome7: "\xD7"
+    - Japanese: "\u3061\u3047"
+      Rome1: tye
+      Rome2: che
+      Rome3: tixe
+      Rome4: chixe
+      Rome5: tile
+      Rome6: chile
+      Rome7: "\xD7"
+    - Japanese: "\u3061\u3087"
+      Rome1: tyo
+      Rome2: cho
+      Rome3: tixyo
+      Rome4: chixyo
+      Rome5: tilyo
+      Rome6: chilyo
+      Rome7: "\xD7"
+    - Japanese: "\u306B\u3083"
+      Rome1: nya
+      Rome2: nixya
+      Rome3: nilya
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u306B\u3043"
+      Rome1: nyi
+      Rome2: nixi
+      Rome3: nili
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u306B\u3085"
+      Rome1: nyu
+      Rome2: nixyu
+      Rome3: nixyu
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u306B\u3047"
+      Rome1: nye
+      Rome2: nixe
+      Rome3: nile
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u306B\u3087"
+      Rome1: nyo
+      Rome2: nixyo
+      Rome3: nilyo
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3072\u3083"
+      Rome1: hya
+      Rome2: hixya
+      Rome3: hilya
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3072\u3043"
+      Rome1: hyo
+      Rome2: hixi
+      Rome3: hili
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3072\u3085"
+      Rome1: hyu
+      Rome2: hixyu
+      Rome3: hilyu
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3072\u3047"
+      Rome1: hye
+      Rome2: hixe
+      Rome3: hile
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3072\u3087"
+      Rome1: hyo
+      Rome2: hixyo
+      Rome3: hilyo
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u307F\u3083"
+      Rome1: mya
+      Rome2: mixya
+      Rome3: milya
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u307F\u3043"
+      Rome1: myi
+      Rome2: mixi
+      Rome3: mili
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u307F\u3085"
+      Rome1: myu
+      Rome2: mixyu
+      Rome3: milyu
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u307F\u3047"
+      Rome1: mye
+      Rome2: mixe
+      Rome3: mile
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u307F\u3087"
+      Rome1: myo
+      Rome2: mixyo
+      Rome3: milyo
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u308A\u3083"
+      Rome1: rya
+      Rome2: rixya
+      Rome3: rilya
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u308A\u3043"
+      Rome1: ryi
+      Rome2: rixi
+      Rome3: rili
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u308A\u3085"
+      Rome1: ryu
+      Rome2: rixyu
+      Rome3: rilyu
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u308A\u3047"
+      Rome1: rye
+      Rome2: rixe
+      Rome3: rile
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u308A\u3087"
+      Rome1: ryo
+      Rome2: rixyo
+      Rome3: rilyo
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3066\u3083"
+      Rome1: tha
+      Rome2: texya
+      Rome3: telya
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3066\u3043"
+      Rome1: thi
+      Rome2: texi
+      Rome3: teli
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3066\u3085"
+      Rome1: thu
+      Rome2: texyu
+      Rome3: telyu
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3066\u3047"
+      Rome1: the
+      Rome2: texe
+      Rome3: tele
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3066\u3087"
+      Rome1: tho
+      Rome2: texyo
+      Rome3: telyo
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u304E\u3083"
+      Rome1: gya
+      Rome2: gixya
+      Rome3: gilya
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u304E\u3043"
+      Rome1: gyi
+      Rome2: gixi
+      Rome3: gili
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u304E\u3085"
+      Rome1: gyu
+      Rome2: gixyu
+      Rome3: gilyu
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u304E\u3047"
+      Rome1: gye
+      Rome2: gixe
+      Rome3: gile
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u304E\u3087"
+      Rome1: gyo
+      Rome2: gixyo
+      Rome3: gilyo
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3058\u3083"
+      Rome1: jya
+      Rome2: zya
+      Rome3: jixya
+      Rome4: jilya
+      Rome5: zixya
+      Rome6: zilya
+      Rome7: ja
+    - Japanese: "\u3058\u3043"
+      Rome1: jyi
+      Rome2: zyi
+      Rome3: jixi
+      Rome4: jili
+      Rome5: zixi
+      Rome6: zili
+      Rome7: "\xD7"
+    - Japanese: "\u3058\u3085"
+      Rome1: jyu
+      Rome2: zyu
+      Rome3: jixyu
+      Rome4: jilyu
+      Rome5: zixyu
+      Rome6: zilyu
+      Rome7: ju
+    - Japanese: "\u3058\u3047"
+      Rome1: jye
+      Rome2: zye
+      Rome3: jixe
+      Rome4: jile
+      Rome5: zixe
+      Rome6: zile
+      Rome7: "\xD7"
+    - Japanese: "\u3058\u3087"
+      Rome1: jyo
+      Rome2: zyo
+      Rome3: jixyo
+      Rome4: jilyo
+      Rome5: zixyo
+      Rome6: zilyo
+      Rome7: jo
+    - Japanese: "\u3062\u3083"
+      Rome1: dya
+      Rome2: dixya
+      Rome3: dilya
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3062\u3043"
+      Rome1: dyi
+      Rome2: dixi
+      Rome3: dili
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3062\u3085"
+      Rome1: dyu
+      Rome2: dixyu
+      Rome3: dilyu
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3062\u3047"
+      Rome1: dye
+      Rome2: dixe
+      Rome3: dile
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3062\u3087"
+      Rome1: dyo
+      Rome2: dixyo
+      Rome3: dilyo
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3067\u3083"
+      Rome1: dha
+      Rome2: dexya
+      Rome3: delya
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3067\u3043"
+      Rome1: dhi
+      Rome2: dexi
+      Rome3: deli
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3067\u3085"
+      Rome1: dhu
+      Rome2: dexyu
+      Rome3: delyu
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3067\u3047"
+      Rome1: dhe
+      Rome2: dexe
+      Rome3: dele
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3067\u3087"
+      Rome1: dho
+      Rome2: dexyo
+      Rome3: delyo
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3073\u3083"
+      Rome1: bya
+      Rome2: bixya
+      Rome3: bilya
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3073\u3043"
+      Rome1: byi
+      Rome2: bixi
+      Rome3: bili
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3073\u3085"
+      Rome1: byu
+      Rome2: bixyu
+      Rome3: bilyu
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3073\u3047"
+      Rome1: bye
+      Rome2: bixe
+      Rome3: bile
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3073\u3087"
+      Rome1: byo
+      Rome2: bixyo
+      Rome3: bilyo
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3074\u3083"
+      Rome1: pya
+      Rome2: pixya
+      Rome3: pilya
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3074\u3043"
+      Rome1: pyi
+      Rome2: pixi
+      Rome3: pili
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3074\u3085"
+      Rome1: pyu
+      Rome2: pixyu
+      Rome3: pilyu
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3074\u3047"
+      Rome1: pye
+      Rome2: pixe
+      Rome3: pile
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3074\u3087"
+      Rome1: pyo
+      Rome2: pixyo
+      Rome3: pilyo
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3075\u3041"
+      Rome1: fa
+      Rome2: huxa
+      Rome3: hula
+      Rome4: fuxa
+      Rome5: fula
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3075\u3043"
+      Rome1: fi
+      Rome2: huxi
+      Rome3: huli
+      Rome4: fuxi
+      Rome5: fuxi
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3075\u3047"
+      Rome1: fe
+      Rome2: huxe
+      Rome3: hule
+      Rome4: fuxe
+      Rome5: fele
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3075\u3049"
+      Rome1: fo
+      Rome2: huxo
+      Rome3: hulo
+      Rome4: fuxo
+      Rome5: fulo
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u304F\u3041"
+      Rome1: qa
+      Rome2: kuxa
+      Rome3: kula
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u304F\u3043"
+      Rome1: qi
+      Rome2: kuxi
+      Rome3: kuli
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u304F\u3047"
+      Rome1: qe
+      Rome2: kuxe
+      Rome3: kule
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u304F\u3049"
+      Rome1: qo
+      Rome2: kuxo
+      Rome3: kulo
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3041"
+      Rome1: xa
+      Rome2: la
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3043"
+      Rome1: xi
+      Rome2: li
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3045"
+      Rome1: xu
+      Rome2: lu
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3047"
+      Rome1: xe
+      Rome2: le
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3049"
+      Rome1: xo
+      Rome2: lo
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3083"
+      Rome1: xya
+      Rome2: lya
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3085"
+      Rome1: xyu
+      Rome2: lyu
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3087"
+      Rome1: xyo
+      Rome2: lyo
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u3063"
+      Rome1: xtu
+      Rome2: ltu
+      Rome3: "\u25B3"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
+    - Japanese: "\u30FC"
+      Rome1: '-'
+      Rome2: "\xD7"
+      Rome3: "\xD7"
+      Rome4: "\xD7"
+      Rome5: "\xD7"
+      Rome6: "\xD7"
+      Rome7: "\xD7"
