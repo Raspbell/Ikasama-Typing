@@ -115,12 +115,13 @@ public class GameManager : MonoBehaviour
     {
         moneyText.text = money.ToString();
         time += Time.deltaTime;
-        if (time >= 20)
+        if (time >= 10)
         {
             if (totalMoney > 0)
             {
                 UnityroomApiClient.Instance.SendScore(1, totalMoney, ScoreboardWriteMode.Always);
             }
+            time = 0;
             StartTyping.SavePrefs();
         }
     }
@@ -211,9 +212,10 @@ public class GameManager : MonoBehaviour
         {
             case EnhanceButton.Type.WorkersNum:
                 InstantiateWorker(currentLevel);
+                workersNum.Value = (int)GetLevelValue(type, currentLevel);
                 break;
             case EnhanceButton.Type.RewardPerChar:
-                rewardPerChar = (int)GetLevelValue(type, currentLevel);
+                rewardPerChar = GetLevelValue(type, currentLevel);
                 break;
             case EnhanceButton.Type.TypingCycle:
                 typingCycle = GetLevelValue(type, currentLevel);

@@ -278,7 +278,7 @@ MonoBehaviour:
     roman: heisei
     charCount: 4
   - title: "\u4E2D\u6027\u8102\u80AA"
-    roman: cyuuseisibou
+    roman: tyuuseisibou
     charCount: 7
   - title: "\u30B3\u30F3\u30B3\u30FC\u30B9"
     roman: konko-su
@@ -374,7 +374,7 @@ MonoBehaviour:
     roman: sinkonryokou
     charCount: 7
   - title: "\u958B\u50AC\u4E2D"
-    roman: kaisaichuu
+    roman: kaisaityuu
     charCount: 6
   - title: "\u30DE\u30C3\u30C1\u30F3\u30B0\u30A2\u30D7\u30EA"
     roman: mattinguapuri
@@ -461,7 +461,7 @@ MonoBehaviour:
     roman: hutoumei
     charCount: 6
   - title: "\u30C1\u30E5\u30FC\u30EA\u30C3\u30D7"
-    roman: cyu-rippu
+    roman: tyu-rippu
     charCount: 5
   - title: "\u66B4\u98A8\u96E8"
     roman: bouhuuu

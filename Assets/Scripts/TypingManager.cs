@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static QuestionPropety;
 
 public class TypingManager : MonoBehaviour
@@ -129,6 +130,10 @@ public class TypingManager : MonoBehaviour
                         }
                     }
                     break;
+            }
+            if (Event.current.keyCode == KeyCode.Alpha0)
+            {
+                InitializeQuestion();
             }
         }
     }

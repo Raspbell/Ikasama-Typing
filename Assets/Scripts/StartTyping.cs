@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
@@ -10,6 +11,7 @@ public class StartTyping : MonoBehaviour
     [SerializeField] TextMeshProUGUI titleText;
     [SerializeField] TextMeshProUGUI romanText;
     [SerializeField] GameObject player;
+    [SerializeField] Image startImage;
 
     private QuestionPropety.Question question;
     private List<char> _roman = new List<char>();
@@ -65,6 +67,7 @@ public class StartTyping : MonoBehaviour
         LoadPrefs();
         DetectOperatingSystem();
         InitializeQuestion();
+        startImage.DOFade(0, 1f);
         if (SystemInfo.operatingSystem.Contains("Windows"))
         {
             isWindows = true;
