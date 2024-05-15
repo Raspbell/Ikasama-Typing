@@ -8,7 +8,7 @@ public class ComponentFieldViewer : EditorWindow
 {
     private Vector2 scrollPosition;
 
-    [MenuItem("Window/Component Field Viewer")]
+    [MenuItem("Malen/Component Field Viewer")]
     public static void ShowWindow()
     {
         var window = GetWindow<ComponentFieldViewer>("Component Field Viewer");

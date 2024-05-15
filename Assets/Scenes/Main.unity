@@ -2308,7 +2308,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 9eecb0274e085dc4caf506c6b93ce8f9, type: 2}
+  sharedProfile: {fileID: 11400000, guid: dc2924e09891b0d48ac44a7ce10dcc03, type: 2}
 --- !u!1 &529300296
 GameObject:
   m_ObjectHideFlags: 0
@@ -7744,7 +7744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9bd0df7ee30ebb46b173c7ae93ca5f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questionPropety: {fileID: 11400000, guid: 107a83ccdab779546bf0f10294f18eb5, type: 2}
+  questionPropety: {fileID: 11400000, guid: de41f0d54e30da446b0b79fef4031dd2, type: 2}
   titleText: {fileID: 513776931}
   romanText: {fileID: 195398214}
   player: {fileID: 36827546}
